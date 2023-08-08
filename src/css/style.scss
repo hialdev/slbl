@@ -1,0 +1,112 @@
+$prm : '';
+$scn : '';
+$font1 : '';
+$font2 : '';
+
+//----------------------
+// Breakpoint
+$xs: 576px;
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+
+// Utils
+/* scrollbars */
+::-webkit-scrollbar {
+    width: 3px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f7f7f7; 
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #111720;  
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #111720; 
+}
+
+/* Extra small devices (phone) */
+@media (max-width: $xs) {
+  /* CSS rules for extra small devices here */
+}
+
+/* Small devices (tablet) */
+@media (min-width: $xs) and (max-width: $sm) {
+  /* CSS rules for small devices here */
+}
+
+/* Medium devices (laptop) */
+@media (min-width: $sm) and (max-width: $md) {
+  /* CSS rules for medium devices here */
+}
+
+/* Large devices (desktop) */
+@media (min-width: $md) and (max-width: $lg) {
+  /* CSS rules for large devices here */
+}
+
+/* Extra large devices (large desktop) */
+@media (min-width: $lg) {
+  /* CSS rules for extra large devices here */
+}
+
+//----------------------.
+.iconify, * .iconify{
+    color: inherit !important;
+}
+
+header{
+    position: relative;
+    z-index: 100;
+    left: 0;
+    right: 0;
+}
+.menu{
+
+    &>a{
+        color: #a5a5a5;
+        font-weight: 500;
+        &:hover,&.active{
+            color: #111720;
+        }
+    }
+
+    /* Extra small devices (phone) */
+    @media (max-width: $sm) {
+        padding: 2em;
+        align-items: end !important;
+        position: fixed !important;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        flex-direction: column;
+        z-index: 100 !important;
+        background: #fff;
+        width: 100%;
+        max-width: 20em;
+        transform: translateX(100%);
+        transition: all 0.3s ease-in-out;
+        &.active{
+            transform: translateX(0);
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}
+
+#hero-dots{
+    .owl-dot{
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        background-color: #11172065;
+        &.active{
+            background-color: #dc3545;
+        }
+    }
+}
