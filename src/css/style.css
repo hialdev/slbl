@@ -89,4 +89,13 @@ header {
 }
 #hero-dots .owl-dot.active {
   background-color: #dc3545;
+}
+
+.hero .hero-content {
+  position: absolute;
+}
+@media (max-width: 992px) {
+  .hero .hero-content {
+    position: static;
+  }
 }/*# sourceMappingURL=style.css.map */

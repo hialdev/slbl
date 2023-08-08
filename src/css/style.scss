@@ -110,3 +110,17 @@ header{
         }
     }
 }
+
+
+//--------------------
+//----- Section ------
+//--------------------
+
+.hero{
+    .hero-content{
+        position: absolute;
+        @media (max-width: $md){
+            position: static;
+        }
+    }
+}
