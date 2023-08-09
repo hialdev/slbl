@@ -98,4 +98,19 @@ header {
   .hero .hero-content {
     position: static;
   }
+}
+
+.tag-box {
+  /* Handle */
+  /* Handle on hover */
+}
+.tag-box::-webkit-scrollbar {
+  width: 1px;
+  height: 2px;
+}
+.tag-box::-webkit-scrollbar-thumb {
+  background: #cecece;
+}
+.tag-box::-webkit-scrollbar-thumb:hover {
+  background: #cecece;
 }/*# sourceMappingURL=style.css.map */

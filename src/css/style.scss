@@ -124,3 +124,19 @@ header{
         }
     }
 }
+
+.tag-box{
+    &::-webkit-scrollbar {
+        width: 1px;
+        height: 2px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #cecece;  
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #cecece; 
+    }
+}
