@@ -91,6 +91,15 @@ header {
   background-color: #dc3545;
 }
 
+.sticky-al {
+  position: fixed !important;
+  top: 0 !important;
+  z-index: 999;
+  background: white;
+  left: 0;
+  right: 0;
+}
+
 .hero .hero-content {
   position: absolute;
 }
