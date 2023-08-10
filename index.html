@@ -56,7 +56,7 @@
         </div>
         <div class="shadow-lg py-3 menu-box">
             <div class="container">
-                <div class="d-flex align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center justify-content-between gap-3 position-relative">
                     <a href="./index.html" class="d-block"><img src="https://placehold.co/100x60" alt="Logo brand"></a>
                     <nav class="d-flex align-items-center gap-5 menu">
                         <div class="order-last order-md-first d-flex align-items-center border border-2 rounded-4 overflow-hidden">
@@ -65,16 +65,100 @@
                                 <span class="iconify" data-icon="iconamoon:search"></span>
                             </button>
                         </div>
-                        <button class="btn p-0 d-flex align-items-center d-md-none" id="menu-close">
+                        <button class="btn p-0 d-flex align-items-center d-lg-none" id="menu-close">
                             <span class="iconify fs-2" data-icon="pajamas:long-arrow"></span>
                         </button>
                         <a href="./about.html" class="text-decoration-none">About</a>
                         <a href="./news.html" class="text-decoration-none">News</a>
-                        <a href="./product.html" class="text-decoration-none">Product</a>
+                        <div>
+                            <a href="#" id="menu-product-btn" class="text-decoration-none d-flex align-items-center gap-2">Product <span class="iconify color-inherit" data-icon="icon-park-outline:down"></span>
+                            </a>
+                            <div style="width: 100%;display: none;" class="dropdown" id="menu-product-dropdown">
+                                <ul class="list-unstyled bg-light p-3 rounded-4 row">
+                                    <li class="col-12 mb-4">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="fw-semibold fs-5 text-dark">Product</div>
+                                            <a href="./product.html" class="d-inline-flex p-2 px-3 align-items-center gap-3 text-decoration-none text-dark border border-dark ">Go to Product <span class="iconify" data-icon="pajamas:long-arrow"></span></a>
+                                        </div>
+                                    </li>
+                                    <li class="col-12 col-lg-3">
+                                        <a href="" class="d-flex gap-3 align-items-center text-decoration-none text-dark">
+                                            <div class="rounded-4 bg-white d-flex align-items-center justify-content-center p-3 p-lg-4 mb-2" style="height:6em;width:6em">
+                                                <img src="https://placehold.co/100" alt="Image Category" class="d-block" style="max-width: 4em;">
+                                            </div>
+                                            <h6>Category Name</h6>
+                                        </a>
+                                    </li>
+                                    <li class="col-12 col-lg-3">
+                                        <a href="" class="d-flex gap-3 align-items-center text-decoration-none text-dark">
+                                            <div class="rounded-4 bg-white d-flex align-items-center justify-content-center p-3 p-lg-4 mb-2" style="height:6em;width:6em">
+                                                <img src="https://placehold.co/100" alt="Image Category" class="d-block" style="max-width: 4em;">
+                                            </div>
+                                            <h6>Category Name</h6>
+                                        </a>
+                                    </li>
+                                    <li class="col-12 col-lg-3">
+                                        <a href="" class="d-flex gap-3 align-items-center text-decoration-none text-dark">
+                                            <div class="rounded-4 bg-white d-flex align-items-center justify-content-center p-3 p-lg-4 mb-2" style="height:6em;width:6em">
+                                                <img src="https://placehold.co/100" alt="Image Category" class="d-block" style="max-width: 4em;">
+                                            </div>
+                                            <h6>Category Name</h6>
+                                        </a>
+                                    </li>
+                                    <li class="col-12 col-lg-3">
+                                        <a href="" class="d-flex gap-3 align-items-center text-decoration-none text-dark">
+                                            <div class="rounded-4 bg-white d-flex align-items-center justify-content-center p-3 p-lg-4 mb-2" style="height:6em;width:6em">
+                                                <img src="https://placehold.co/100" alt="Image Category" class="d-block" style="max-width: 4em;">
+                                            </div>
+                                            <h6>Category Name</h6>
+                                        </a>
+                                    </li>
+                                    <li class="col-12 col-lg-3">
+                                        <a href="" class="d-flex gap-3 align-items-center text-decoration-none text-dark">
+                                            <div class="rounded-4 bg-white d-flex align-items-center justify-content-center p-3 p-lg-4 mb-2" style="height:6em;width:6em">
+                                                <img src="https://placehold.co/100" alt="Image Category" class="d-block" style="max-width: 4em;">
+                                            </div>
+                                            <h6>Category Name</h6>
+                                        </a>
+                                    </li>
+                                    <li class="col-12 col-lg-3">
+                                        <a href="" class="d-flex gap-3 align-items-center text-decoration-none text-dark">
+                                            <div class="rounded-4 bg-white d-flex align-items-center justify-content-center p-3 p-lg-4 mb-2" style="height:6em;width:6em">
+                                                <img src="https://placehold.co/100" alt="Image Category" class="d-block" style="max-width: 4em;">
+                                            </div>
+                                            <h6>Category Name</h6>
+                                        </a>
+                                    </li>
+                                    <li class="col-12">
+                                        <div class="row mt-4">
+                                            <div data-aos="fade-down" data-aos-delay="50" data-aos-duration="1000" class="col-4 col-md-4 col-lg-2 mb-3">
+                                                <a href="./product_item.html" class="text-decoration-none d-block text-dark">
+                                                    <img src="https://placehold.co/300" alt="Product" class="w-100 mb-3">
+                                                    <h6 style="font-size: 12px;">Product Name</h6>
+                                                </a>
+                                            </div>
+                                            <div data-aos="fade-down" data-aos-delay="50" data-aos-duration="1000" class="col-4 col-md-4 col-lg-2 mb-3">
+                                                <a href="./product_item.html" class="text-decoration-none d-block text-dark">
+                                                    <img src="https://placehold.co/300" alt="Product" class="w-100 mb-3">
+                                                    <h6 style="font-size: 12px;">Product Name</h6>
+                                                </a>
+                                            </div>
+                                            <div data-aos="fade-down" data-aos-delay="50" data-aos-duration="1000" class="col-4 col-md-4 col-lg-2 mb-3">
+                                                <a href="./product_item.html" class="text-decoration-none d-block text-dark">
+                                                    <img src="https://placehold.co/300" alt="Product" class="w-100 mb-3">
+                                                    <h6 style="font-size: 12px;">Product Name</h6>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="./sparepart.html" class="text-decoration-none">Sparepart</a>
                         <a href="./service.html" class="text-decoration-none">Service</a>
-                        
+                        <a href="./contact.html" class="text-decoration-none">Contact</a>
                     </nav>
-                    <button class="btn p-0 d-flex align-items-center d-md-none" id="menu-open">
+                    <button class="btn p-0 d-flex align-items-center d-lg-none" id="menu-open">
                         <span class="iconify fs-2" data-icon="fluent:text-align-right-16-filled"></span>
                     </button>
                 </div>
@@ -353,7 +437,9 @@
                         <li><a href="./about.html" class="text-decoration-none text-white">About</a></li>
                         <li><a href="./news.html" class="text-decoration-none text-white">News</a></li>
                         <li><a href="./product.html" class="text-decoration-none text-white">Product</a></li>
+                        <li><a href="./sparepart.html" class="text-decoration-none text-white">Sparepart</a></li>
                         <li><a href="./service.html" class="text-decoration-none text-white">Service</a></li>
+                        <li><a href="./contact.html" class="text-decoration-none text-white">Contact</a></li>
                     </ul>
                 </div>
                 <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" class="mb-3 col-6 col-lg-3">

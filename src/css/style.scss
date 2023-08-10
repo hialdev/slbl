@@ -91,17 +91,25 @@ header{
 }
 
 .menu{
-
-    &>a{
+    overflow-y: auto;
+    & a,& a>span.iconify{
         color: #a5a5a5;
         font-weight: 500;
         &:hover,&.active{
             color: #111720;
         }
+
     }
 
+    .dropdown{
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin-top: 5em;
+    }
     /* Extra small devices (phone) */
-    @media (max-width: $sm) {
+    @media (max-width: $md) {
         padding: 2em;
         align-items: end !important;
         position: fixed !important;
@@ -112,12 +120,17 @@ header{
         z-index: 100 !important;
         background: #fff;
         width: 100%;
-        max-width: 20em;
+        max-width: 25em;
         transform: translateX(100%);
         transition: all 0.3s ease-in-out;
         &.active{
             transform: translateX(0);
             transition: all 0.3s ease-in-out;
+        }
+
+        .dropdown{
+            position: static;
+            margin-top: 1em;
         }
     }
 }
@@ -172,6 +185,18 @@ header{
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: #cecece; 
+    }
+    >a{
+        &.active{
+            background-color: #dc3545 !important;
+            color: #fff !important;
+            &:hover{
+                background-color: #dc3545 !important;
+            }
+        }
+        &:hover{
+            background-color: #dc354623 !important;
+        }
     }
 }
 
