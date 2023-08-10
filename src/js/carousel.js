@@ -6,6 +6,22 @@ $('.hero-carousel').owlCarousel({
     dotsContainer:'#hero-dots',
 })
 
+const item = $('.item-carousel');
+item.owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    items:1,
+    dotsContainer:'#item-dots',
+    autoHeight:true
+})
+$('.next-item').click(function() {
+    item.trigger('next.owl.carousel');
+})
+$('.prev-item').click(function() {
+    item.trigger('prev.owl.carousel', [300]);
+})
+
 $('.service-carousel').owlCarousel({
     loop:true,
     margin:10,

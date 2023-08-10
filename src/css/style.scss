@@ -135,12 +135,19 @@ header{
     }
 }
 
-#hero-dots{
+#item-dots{
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+#hero-dots,#item-dots{
     .owl-dot{
         outline: none;
         border: none;
         border-radius: 10px;
         background-color: #11172065;
+        height: 5px;
+        width: 15px;
         &.active{
             background-color: #dc3545;
         }

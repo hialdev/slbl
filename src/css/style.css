@@ -113,13 +113,21 @@ header {
   }
 }
 
-#hero-dots .owl-dot {
+#item-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+#hero-dots .owl-dot, #item-dots .owl-dot {
   outline: none;
   border: none;
   border-radius: 10px;
   background-color: rgba(17, 23, 32, 0.3960784314);
+  height: 5px;
+  width: 15px;
 }
-#hero-dots .owl-dot.active {
+#hero-dots .owl-dot.active, #item-dots .owl-dot.active {
   background-color: #dc3545;
 }
 
