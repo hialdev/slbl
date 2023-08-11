@@ -10,6 +10,16 @@ $('#menu-product-btn').click(function(){
     $('#menu-product-dropdown').fadeToggle();
 })
 
+$('#open-floating').click(function(){
+    $('#data-floating').toggleClass('d-flex');
+    $(this).addClass('d-none');
+})
+
+$('#close-floating').click(function(){
+    $('#data-floating').removeClass('d-flex');
+    $('#open-floating').removeClass('d-none');
+})
+
 var elementPosition = $('.menu-box').offset();
 
 $(window).scroll(function(){
