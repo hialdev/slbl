@@ -34,6 +34,9 @@ class AppServiceProvider extends ServiceProvider
         $product_category = ProductCategory::all();
         $page = Page::all()->keyBy('slug');
         $sosmeds = Sosmed::latest()->limit(4)->get();
+        $popup = BannerSection::where('popup',1)->firstOrFail();
+
+        View::share('popup',$popup);
         View::share('page',$page);
         View::share('products',$products);
         View::share('sosmeds',$sosmeds);

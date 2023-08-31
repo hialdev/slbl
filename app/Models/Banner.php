@@ -8,7 +8,7 @@ use TCG\Voyager\Traits\Resizable;
 
 class Banner extends Model
 {
-    use HasFactory;
+    use HasFactory, Resizable;
 
     protected $table = "banners";
 

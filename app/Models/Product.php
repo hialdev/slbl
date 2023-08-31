@@ -8,7 +8,7 @@ use TCG\Voyager\Traits\Resizable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Resizable;
     protected $table = "products";
 
     public function category(){

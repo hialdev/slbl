@@ -6,6 +6,10 @@ $('#menu-open').click(function (){
     $('.menu').addClass('active');
 })
 
+$('#close-popup').click(function (){
+    $('#popup').addClass('d-none');
+})
+
 $('#menu-product-btn').click(function(){
     $('#menu-product-dropdown').fadeToggle();
 })

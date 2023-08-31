@@ -24,7 +24,7 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
 
             $path = $this->slug.DIRECTORY_SEPARATOR.date('FY').DIRECTORY_SEPARATOR;
 
-            $filename = $this->generateFileName($file, $path);
+            $filename = $this->generateFileNameFromSlug($file, $path);
 
             $image = InterventionImage::make($file)->orientate();
 
@@ -122,12 +122,12 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
 
     private function getWatermarkImage ($imageWidth)
     {
-        $scale = config('app.watermark.scale', 0.5);
+        $scale = 0.5;
         $width = intval($imageWidth * $scale);
 
         if ($file_wm = Voyager::image(setting('site.watermark')))
         {
-            $watermark = public_path().$file_wm;
+            $watermark = $file_wm;
 
             if (file_exists($watermark))
             {
