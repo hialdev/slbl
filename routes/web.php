@@ -22,6 +22,7 @@ use TCG\Voyager\Facades\Voyager;
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/search/{q}', [PageController::class, 'search'])->name('search');
 Route::post('/contact', [PageController::class, 'send'])->name('contact.send');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/terms-of-service', [PageController::class, 'tos'])->name('tos');
@@ -43,6 +44,6 @@ Route::get('/sparepart', [SparepartController::class, 'index'])->name('sparepart
 Route::get('/sparepart/{slug}', [SparepartController::class, 'show'])->name('sparepart.show');
 Route::get('/sparepart/category/{slug}', [SparepartController::class, 'category'])->name('sparepart.category');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'cockpit'], function () {
     Voyager::routes();
 });

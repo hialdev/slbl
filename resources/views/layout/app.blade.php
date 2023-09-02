@@ -31,8 +31,6 @@
     @include('partials.header')
     <main>
 
-        {{-- First Load Banner Modal --}}
-        @include('modals.firstload')
         {{-- Contact Modal --}}
         @include('modals.contact')
 
@@ -60,6 +58,22 @@
     <script src="/src/js/carousel.js"></script>
     <script src="/src/js/script.js"></script>
 
+    <script>
+        // Mendapatkan elemen-elemen HTML yang diperlukan
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+    
+        // Menambahkan event listener untuk mengarahkan ke /search/{inputan} saat tombol "Search" diklik
+        searchButton.addEventListener('click', function() {
+            const inputValue = searchInput.value.trim(); // Mendapatkan nilai input dan menghapus spasi di awal dan akhir
+    
+            // Memeriksa apakah nilai input kosong atau tidak
+            if (inputValue !== '') {
+                window.location.href = `/search/${encodeURIComponent(inputValue)}`;
+            }
+        });
+    </script>
+    
     @yield('beforebody')
 
 </body>

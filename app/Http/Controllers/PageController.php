@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Service;
 use App\Models\Sosmed;
+use App\Models\Sparepart;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 
@@ -88,5 +89,22 @@ class PageController extends Controller
         ];
 
         return view('tos', compact('seo'));
+    }
+
+    public function search($q) {
+        $meta = Page::all()->keyBy('slug');
+
+        $seo = (object)[
+            'title' => $q ? 'Cari di Scissor Lift Boom Lift - '.$q : 'Cari di Scissor Lift Boom Lift',
+            'desc' => $meta->get('default')->meta_desc,
+            'image' => Voyager::image($meta->get('default')->image),
+            'keyword' => $meta->get('default')->meta_keyword,
+        ];
+
+        $services = Service::where('title','like','%'.$q.'%')->limit(4)->get();
+        $spareparts = Sparepart::where('title','like','%'.$q.'%')->limit(4)->get();
+        $products = Product::where('title','like','%'.$q.'%')->limit(4)->get();
+
+        return view('search', compact('seo','q','products','spareparts','services'));
     }
 }

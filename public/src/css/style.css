@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 /* scrollbars */
 ::-webkit-scrollbar {
   width: 3px;
@@ -40,8 +40,16 @@
   /* CSS rules for extra large devices here */
 }
 * {
-  font-family: "Poppins", sans-serif !important;
-  font-weight: 300;
+  font-family: "Outfit", sans-serif !important;
+  font-weight: 400;
+}
+
+p {
+  margin-bottom: 2em;
+}
+
+p, div, font, i, a {
+  line-height: 1.8em;
 }
 
 .lc {
@@ -64,6 +72,11 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif !important;
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+  line-height: 140%;
 }
 
 .iconify, * .iconify {

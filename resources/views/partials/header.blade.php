@@ -34,8 +34,8 @@
                 <a href="{{route('home')}}" class="d-block"><img src="{{Voyager::image(setting('site.logo'))}}" alt="Logo brand" style="width:100px;height:60px;"></a>
                 <nav class="d-flex align-items-center gap-5 menu">
                     <div class="order-last order-md-first d-flex align-items-center border border-2 rounded-4 overflow-hidden">
-                        <input type="text" class="form-control border-0 w-100 outline-0 rounded-0" name="q" placeholder="Cari disini..">
-                        <button class="btn d-flex align-items-center justify-content-center bg-danger text-white rounded-0 h-100" style="padding: 0.55em;">
+                        <input type="text" class="form-control border-0 w-100 outline-0 rounded-0" id="searchInput" placeholder="Cari disini..">
+                        <button class="btn d-flex align-items-center justify-content-center bg-danger text-white rounded-0 h-100" style="padding: 0.55em;" id="searchButton">
                             <span class="iconify" data-icon="iconamoon:search"></span>
                         </button>
                     </div>

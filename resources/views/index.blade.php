@@ -6,6 +6,9 @@
 @endsection
 
 @section('content')
+{{-- First Load Banner Modal --}}
+@include('modals.firstload')
+
 <section class="hero">
     <div class="position-relative">
         <div class="owl-carousel owl-theme hero-carousel">
