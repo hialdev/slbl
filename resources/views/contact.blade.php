@@ -29,7 +29,7 @@
             </div>
             <div class="col-12 col-lg-6 mb-4">
                 <h3>Mail us</h3>
-                <form action="POST" action="{{route('contact.send')}}" class="row mt-3">
+                <form method="POST" action="{{route('contact.send')}}" class="row mt-3">
                     @csrf
                     <div class="col-12">
                         <input type="text" class="form-control w-100 rounded-4 bg-light border-0 p-2 px-3 mb-3" name="name" placeholder="Nama Anda" minlength="4" maxlength="23">
