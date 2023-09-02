@@ -4,7 +4,7 @@
             <div class="d-flex align-items-center justify-content-between gap-4">
                 <div class="d-none d-md-block"><marquee behavior="" direction="">{{setting('site.walk_text')}}</marquee></div>
                 <div class="d-flex items-center ms-auto">
-                    <a href="{{setting('site.gmap')}}" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
+                    <a href="{{setting('site.link_address')}}" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
                         <span class="iconify" data-icon="fa-solid:map-marker-alt"></span>
                         Office
                     </a>
