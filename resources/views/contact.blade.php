@@ -12,7 +12,7 @@
         <div class="p-1 bg-danger mb-3" style="width: 2em;"></div>
         <div class="row">
             <div class="col-12 mb-4">
-                <img src="{{Voyager::image(setting('typography.contact_image'))}}" alt="Image Kantor" class="d-block w-100 rounded-4" style="aspect-ratio:10/7;object-fit:cover">
+                <img src="{{Voyager::image(setting('typography.contact_image'))}}" alt="Image Kantor" class="d-block w-100 rounded-4" style="aspect-ratio:16/9;object-fit:cover">
             </div>
             <div class="col-12 mb-4">
                 <iframe src="{{setting('site.gmap')}}" style="border:0;min-height: 30em;width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -29,9 +29,10 @@
             </div>
             <div class="col-12 col-lg-6 mb-4">
                 <h3>Mail us</h3>
-                <form action="" class="row mt-3">
+                <form action="POST" action="{{route('contact.send')}}" class="row mt-3">
+                    @csrf
                     <div class="col-12">
-                        <input type="text" class="form-control w-100 rounded-4 bg-light border-0 p-2 px-3 mb-3" name="name" placeholder="Nama Anda">
+                        <input type="text" class="form-control w-100 rounded-4 bg-light border-0 p-2 px-3 mb-3" name="name" placeholder="Nama Anda" minlength="4" maxlength="23">
                     </div>
                     <div class="col-12 col-md-6">
                         <input type="email" class="form-control w-100 rounded-4 bg-light border-0 p-2 px-3 mb-3" name="email" placeholder="your@email.com">
@@ -43,7 +44,7 @@
                         <textarea name="messages" id="" cols="30" rows="10" class="form-control w-100 rounded-4 bg-light border-0 p-2 px-3 mb-3"></textarea>
                     </div>
                     <div class="col-12">
-                        <btn:submit class="btn btn-dark px-3">Send</btn:submit>
+                        <button type="submit" class="btn btn-dark px-3">Send</button>
                     </div>
                 </form>
             </div>
@@ -52,7 +53,7 @@
                 <div class="mt-3 row">
                     <div class="col-12">
                         @forelse ($sosmeds as $sosmed)
-                        <a href="{{$sosmed->link}}" class="d-flex mb-3 text-dark align-items-center gap-3 p-3 rounded-4 border border-2">
+                        <a href="{{$sosmed->link}}" target="_blank" class="d-flex mb-3 text-dark align-items-center gap-3 p-3 rounded-4 border border-2">
                             <span class="iconify" data-icon="{{$sosmed->icon}}"></span>
                             <span class="fw-semibold">{{$sosmed->username}}</span>
                             <div class="ms-auto"><span class="iconify" data-icon="pajamas:long-arrow"></span></div>

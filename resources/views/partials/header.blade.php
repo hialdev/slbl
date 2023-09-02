@@ -4,21 +4,21 @@
             <div class="d-flex align-items-center justify-content-between gap-4">
                 <div class="d-none d-md-block"><marquee behavior="" direction="">{{setting('site.walk_text')}}</marquee></div>
                 <div class="d-flex items-center ms-auto">
-                    <a href="{{setting('site.link_address')}}" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
+                    <a href="{{setting('site.link_address')}}" target="_blank" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
                         <span class="iconify" data-icon="fa-solid:map-marker-alt"></span>
                         Office
                     </a>
-                    <a href="{{'mailto:'.setting('site.mail')}}" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
+                    <a href="{{'mailto:'.setting('site.mail')}}" target="_blank" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
                         <span class="iconify" data-icon="pajamas:mail"></span>
                         Mail
                     </a>
-                    <a href="{{'telp:'.setting('site.telp')}}" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
+                    <a href="{{'telp:'.setting('site.telp')}}" target="_blank" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
                         <span class="iconify" data-icon="teenyicons:phone-outline"></span>
                         Telp
                     </a>
                     <div class="d-flex align-items-center gap-3 ms-3">
                         @foreach ($sosmeds as $sosmed)
-                        <a href="{{$sosmed->link}}" class="text-decoration-none d-flex text-white align-items-center justify-content-center">
+                        <a href="{{$sosmed->link}}" target="_blank" class="text-decoration-none d-flex text-white align-items-center justify-content-center">
                             <span class="iconify" data-icon="{{$sosmed->icon}}"></span>
                         </a>
                         @endforeach
