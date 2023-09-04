@@ -8,14 +8,14 @@
 @section('content')
 <section>
     <div class="container py-5">
-        <div class="position-fixed bottom-0 end-0 start-0 p-3 d-flex align-items-center justify-content-center" style="z-index: 99;">
-            <a href="" class="btn btn-dark rounded-3 px-3">Pesan Sekarang</a>
+        <div class="position-fixed bottom-0 end-0 start-0 p-3 d-flex align-items-center justify-content-center" style="z-index: 10;">
+            <a href="https://wa.me/{{setting('site.whatsapp')}}" class="btn btn-dark rounded-3 px-3">Pesan Sekarang</a>
         </div>
         <div class="row">
             <div class="col-12 mb-4">
                 <a href="{{route('product.category',$product->category->slug)}}" class="text-decoration-none text-secondary fw-semibold d-flex flex-wrap align-items-center gap-3">
                     <span class="iconify" data-icon="pajamas:arrow-left"></span>
-                    <span class="text-danger fw-semibold">Product</span>/ <span class="text-danger fw-semibold">Category Name</span>/ <span class="text-secondary fw-semibold">Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
+                    <span class="text-danger fw-semibold">Product</span>/ <span class="text-danger fw-semibold">{{$product->category->name}}</span>/ <span class="text-secondary fw-semibold">{{$product->title}}</span>
                 </a>
             </div>
             <div class="col-12 col-lg-9">

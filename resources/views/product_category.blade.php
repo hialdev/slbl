@@ -62,32 +62,11 @@
         </div>
     </div>
 </section>
-<section>
-    <div class="container py-5">
-        <div data-aos="fade" data-aos-delay="0" data-aos-duration="1000" class="d-flex justify-content-center">
-            <a href="" class="d-block">
-                <img src="https://placehold.co/1200x450" alt="" style="max-height: 20em;" class="rounded-3 w-100">
-            </a>
-        </div>
-    </div>
-</section>
 
-<section>
-    <div class="container py-5">
-        <div class="">
-            <div class="row align-items-center">
-                <div data-aos="fade-right" data-aos-delay="0" data-aos-duration="1000" class="col-12 col-lg-6 mb-3">
-                    <img src="https://placehold.co/450x300" alt="" class="w-100">
-                </div>
-                <div data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000" class="col-12 col-lg-6 px-4">
-                    <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis molestias ratione aut pariatur odio, est ab dignissimos! Asperiores, mollitia quas? Porro nisi error, ea tempore consequatur maiores est officia fugiat.</p>
-                    <a href="#" class="btn btn-danger rounded-0">CTA Button</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@include('partials.banner',['code'=>'product-category'])
+
+@include('partials.section',['code'=>'product-category'])
+
 @endsection
 
 @section('beforebody')
