@@ -76,7 +76,7 @@
                                         @forelse ($products as $product)
                                         <div data-aos="fade-down" data-aos-delay="50" data-aos-duration="1000" class="col-4 col-md-4 col-lg-2 mb-3">
                                             <a href="{{route('product.show',$product->slug)}}" class="text-decoration-none d-block text-dark">
-                                                <img src="{{Voyager::image($product->image)}}" alt="Product {{$product->title}}" class="w-100 mb-3" style="aspect-ratio:1/1;object-position:cover;">
+                                                <img src="{{ Voyager::image($product->thumbnail('cropped')) == "" ? Voyager::image($product->thumbnail('cropped')) : Voyager::image($product->image)}}" alt="Product {{$product->title}}" class="w-100 mb-3" style="aspect-ratio:1/1;object-fit:cover;">
                                                 <h6 style="font-size: 12px;">{{$product->title}}</h6>
                                             </a>
                                         </div>

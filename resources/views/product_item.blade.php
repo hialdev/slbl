@@ -21,18 +21,29 @@
             <div class="col-12 col-lg-9">
                 <h1 class="text-capitalize">{{$product->title}}</h1>
                 <div class="d-flex align-items-center gap-2 text-warning my-4">
-                    <span class="iconify" data-icon="ph:star-fill"></span>
-                    <span class="iconify" data-icon="ph:star-fill"></span>
-                    <span class="iconify" data-icon="ph:star-fill"></span>
-                    <span class="iconify" data-icon="ph:star-fill"></span>
-                    <span class="iconify" data-icon="ph:star-fill"></span>
+                    @if ($product->rating != 0)
+                        @php
+                            $i = 1;
+                        @endphp
+                        @while ($i <= (int)$product->rating)
+                            <span class="iconify" data-icon="ph:star-fill"></span>
+                            @php
+                                $i++;
+                            @endphp
+                        @endwhile
+                    @else
+                        <span class="iconify" data-icon="ph:star-fill"></span>
+                        <span class="iconify" data-icon="ph:star-fill"></span>
+                        <span class="iconify" data-icon="ph:star-fill"></span>
+                        <span class="iconify" data-icon="ph:star-fill"></span>
+                    @endif
                 </div>
                 <div class="mb-4">
                     <div class="owl-carousel item-carousel owl-theme">
                         @forelse (json_decode($product->images, true) as $image)
                         <img src="{{Voyager::image($image)}}" alt="Image {{$product->title}} Product" class="d-block rounded-4" style="aspect-ratio:16/9; object-fit:cover">
                         @empty
-                        <img data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" src="{{Voyager::image($product->image)}}" alt="Img {{$product->title}}" class="rounded-4 d-block w-100 my-3" style="aspect-ratio:1/1; object-fit:cover">
+                        <img data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" src="{{ Voyager::image($product->thumbnail('cropped')) == "" ? Voyager::image($product->thumbnail('cropped')) : Voyager::image($product->image)}}" alt="Img {{$product->title}}" class="rounded-4 d-block w-100 my-3" style="aspect-ratio:1/1; object-fit:cover">
                         @endforelse
                     </div>
                     <div class="d-flex gap-3 my-4 align-items-center justify-content-between">
@@ -72,7 +83,7 @@
             @forelse ($suggests as $suggest)
             <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" class="col-6 col-lg-4 col-xl-3">
                 <a href="{{route('product.show',$suggest->slug)}}" class="d-block mb-4 text-decoration-none text-dark">
-                    <img src="{{Voyager::image($suggest->image)}}" alt="Image {{$suggest->title}} Product" class="w-100" style="aspect-ratio:1/1">
+                    <img src="{{ Voyager::image($suggest->thumbnail('cropped')) == "" ? Voyager::image($suggest->thumbnail('cropped')) : Voyager::image($suggest->image)}}" alt="Image {{$suggest->title}} Product" class="w-100" style="aspect-ratio:1/1">
                     <h6 class="lc lc-3 mb-2 bg-dark text-white text-center py-2 px-3">{{$suggest->title}}</h6>
                 </a>
             </div>

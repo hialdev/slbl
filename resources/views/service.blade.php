@@ -31,7 +31,7 @@
             @forelse ($services as $service)
             <a data-aos="fade-down" data-aos-delay="00" data-aos-duration="4000" href="{{route('service.show', $service->slug)}}" class="row bg-white text-decoration-none text-dark w-100 overflow-hidden rounded-4">
                 <div class=" col-12 col-md-6 p-0 m-0">
-                    <img src="{{Voyager::image($service->image)}}" alt="{{$service->title}} Image" class="d-block w-100 p-0" style="max-width: 40em;aspect-ratio:10/7;object-fit:cover">
+                    <img src="{{ Voyager::image($service->thumbnail('cropped')) == "" ? Voyager::image($service->thumbnail('cropped')) : Voyager::image($service->image)}}" alt="{{$service->title}} Image" class="d-block w-100 p-0" style="max-width: 40em;aspect-ratio:10/7;object-fit:cover">
                 </div>
                 <div class=" col-12 col-md-6 p-0 m-0">
                     <div class="p-5 bg-white d-flex flex-column h-100">

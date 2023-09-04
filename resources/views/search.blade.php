@@ -23,7 +23,7 @@
             @forelse ($products as $product)
             <div data-aos="fade-down" data-aos-delay="00" data-aos-duration="4000" class="mb-4 col-6 col-md-4 col-lg-3">
                 <a href="{{route('product.show',$product->slug)}}" class="text-decoration-none d-block">
-                    <img src="{{Voyager::image($product->image)}}" alt="Image {{$product->title}} Product" class="w-100 d-block" style="aspect-ratio:1/1; object-fit:cover">
+                    <img src="{{ Voyager::image($product->thumbnail('cropped')) == "" ? Voyager::image($product->thumbnail('cropped')) : Voyager::image($product->image)}}" alt="Image {{$product->title}} Product" class="w-100 d-block" style="aspect-ratio:1/1; object-fit:cover">
                     <div class="text-center fs-6 bg-dark fw-bold py-1 text-white">
                         {{$product->title}}
                     </div>
@@ -42,7 +42,7 @@
             @forelse ($spareparts as $sparepart)
             <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="4000" class="mb-4 col-6 col-md-4 col-lg-3">
                 <a href="{{route('sparepart.show',$sparepart->slug)}}" class="text-decoration-none d-block">
-                    <img src="{{Voyager::image($sparepart->image)}}" alt="Image {{$sparepart->title}} Sparepart" class="w-100 d-block" style="aspect-ratio:1/1">
+                    <img src="{{ Voyager::image($sparepart->thumbnail('cropped')) == "" ? Voyager::image($sparepart->thumbnail('cropped')) : Voyager::image($sparepart->image)}}" alt="Image {{$sparepart->title}} Sparepart" class="w-100 d-block" style="aspect-ratio:1/1">
                     <div class="text-dark fs-6 fw-semibold py-1">
                         {{$sparepart->title}}
                         <div class="d-flex align-items-center gap-3 text-danger">
@@ -65,7 +65,7 @@
             @forelse ($services as $service)
             <a data-aos="fade-down" data-aos-delay="00" data-aos-duration="4000" href="{{route('service.show', $service->slug)}}" class="row bg-white text-decoration-none text-dark w-100 overflow-hidden rounded-4">
                 <div class=" col-12 col-md-6 p-0 m-0">
-                    <img src="{{Voyager::image($service->image)}}" alt="{{$service->title}} Image" class="d-block w-100 p-0" style="max-width: 40em;aspect-ratio:10/7;object-fit:cover">
+                    <img src="{{ Voyager::image($service->thumbnail('cropped')) == "" ? Voyager::image($service->thumbnail('cropped')) : Voyager::image($service->image)}}" alt="{{$service->title}} Image" class="d-block w-100 p-0" style="max-width: 40em;aspect-ratio:10/7;object-fit:cover">
                 </div>
                 <div class=" col-12 col-md-6 p-0 m-0">
                     <div class="p-5 bg-white d-flex flex-column h-100">

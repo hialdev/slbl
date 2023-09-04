@@ -48,7 +48,7 @@
             @forelse ($products as $product)
             <div data-aos="fade-down" data-aos-delay="400" data-aos-duration="1000" class="col-12 col-md-4 mb-3">
                 <a href="{{route('product.show',$product->slug)}}" class="text-decoration-none d-block text-dark">
-                    <img src="{{Voyager::image($product->image)}}" alt="Product" class="w-100 mb-3" style="aspect-ratio:1/1">
+                    <img src="{{ Voyager::image($product->thumbnail('cropped')) == "" ? Voyager::image($product->thumbnail('cropped')) : Voyager::image($product->image)}}" alt="Product" class="w-100 mb-3" style="aspect-ratio:1/1">
                     <h6>{{$product->title}}</h6>
                 </a>
             </div>
@@ -93,7 +93,7 @@
                 <div class="owl-carousel owl-theme service-carousel">
                     @forelse ($services as $service)
                     <a href="{{route('service.show',$service->slug)}}" class="bg-white d-block text-decoration-none p-2 rounded-3 text-dark text-center">
-                        <img src="{{Voyager::image($service->image)}}" alt="{{$service->title}} service image" class="rounded-2 mb-3" style="aspect-ratio:10/7">
+                        <img src="{{ Voyager::image($service->thumbnail('cropped')) == "" ? Voyager::image($service->thumbnail('cropped')) : Voyager::image($service->image)}}" alt="{{$service->title}} service image" class="rounded-2 mb-3" style="aspect-ratio:10/7">
                         <h6>{{$service->title}}</h6>
                     </a>
                     @empty
@@ -139,7 +139,7 @@
             @forelse ($news as $new)
             <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" class="col-6 col-lg-4 col-xl-3">
                 <a href="{{route('news.show',$new->slug)}}" class="d-block mb-4 text-decoration-none text-dark">
-                    <img src="{{Voyager::image($new->image)}}" alt="Image Thumbnail {{$new->title}} News" class="w-100 mb-2" style="aspect-ratio:16/9">
+                    <img src="{{ Voyager::image($new->thumbnail('cropped')) == "" ? Voyager::image($new->thumbnail('cropped')) : Voyager::image($new->image)}}" alt="Image Thumbnail {{$new->title}} News" class="w-100 mb-2" style="aspect-ratio:16/9">
                     <h6 class="lc lc-3 mb-2">{{$new->title}}</h6>
                     <p class="fs-6 text-secondary lc lc-3 text-justify">{{$new->meta_description}}</p>
                 </a>

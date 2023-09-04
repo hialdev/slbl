@@ -24,7 +24,7 @@
                 <div class="p-1 bg-danger mb-3" style="width: 2em;"></div>
                 <ul class="list-unstyled d-flex flex-column gap-3">
                     @foreach ($products as $product)
-                    <li><a href="{{route('product.show',$product->slug)}}" class="text-decoration-none text-white">{{$product->slug}}</a></li>
+                    <li><a href="{{route('product.show',$product->slug)}}" class="text-decoration-none text-white lc lc-1">{{$product->title}}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -33,7 +33,7 @@
                 <p>{{setting('footer.address')}}</p>
                 <iframe src="{{setting('site.gmap')}}" style="border:0;min-height: 10em;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            <div data-aos="fade" data-aos-delay="0" data-aos-duration="1000" class="mb-3 col-12 pt-5">
+            <div class="mb-3 col-12 pt-5">
                 &copy; {{setting('footer.credit')}}
             </div>
         </div>

@@ -6,23 +6,30 @@ use Illuminate\Support\Str;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image as InterventionImage;
 
-class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
+class VoyagerMultipleImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\MultipleImage
 {
+    /**
+     * @return string
+     */
     public function handle()
     {
-        if ($this->request->hasFile($this->row->field)) {
-            $file = $this->request->file($this->row->field);
+        $filesPath = [];
+        $files = $this->request->file($this->row->field);
 
-            $path = $this->slug.DIRECTORY_SEPARATOR.date('FY').DIRECTORY_SEPARATOR;
+        if (!$files) {
+            return;
+        }
 
-            $filename = $this->generateFileName($file, $path);
+        foreach ($files as $file) {
+            if (!$file->isValid()) {
+                continue;
+            }
 
             $image = InterventionImage::make($file)->orientate();
 
-            $fullPath = $path.$filename.'123.'.$file->getClientOriginalExtension();
-
             $resize_width = null;
             $resize_height = null;
+
             if (isset($this->options->resize) && (
                 isset($this->options->resize->width) || isset($this->options->resize->height)
             )) {
@@ -37,9 +44,14 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
                 $resize_height = $image->height();
             }
 
-            $resize_quality = isset($this->options->quality) ? intval($this->options->quality) : 75;
-
+            $resize_quality = intval($this->options->quality ?? 75);
+            
             $image->insert($this->getWatermarkImage($resize_width), 'center');
+
+            $filename = Str::random(20);
+            $path = $this->slug.DIRECTORY_SEPARATOR.date('FY').DIRECTORY_SEPARATOR;
+            array_push($filesPath, $path.$filename.'.'.$file->getClientOriginalExtension());
+            $filePath = $path.$filename.'.'.$file->getClientOriginalExtension();
 
             $image = $image->resize(
                 $resize_width,
@@ -52,13 +64,7 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
                 }
             )->encode($file->getClientOriginalExtension(), $resize_quality);
 
-            if ($this->is_animated_gif($file)) {
-                Storage::disk(config('voyager.storage.disk'))->put($fullPath, file_get_contents($file), 'public');
-                $fullPathStatic = $path.$filename.'-static.'.$file->getClientOriginalExtension();
-                Storage::disk(config('voyager.storage.disk'))->put($fullPathStatic, (string) $image, 'public');
-            } else {
-                Storage::disk(config('voyager.storage.disk'))->put($fullPath, (string) $image, 'public');
-            }
+            Storage::disk(config('voyager.storage.disk'))->put($filePath, (string) $image, 'public');
 
             if (isset($this->options->thumbnails)) {
                 foreach ($this->options->thumbnails as $thumbnails) {
@@ -68,17 +74,16 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
                         $thumb_resize_height = $resize_height;
 
                         if ($thumb_resize_width != null && $thumb_resize_width != 'null') {
-                            $thumb_resize_width = intval($thumb_resize_width * $scale);
+                            $thumb_resize_width = $thumb_resize_width * $scale;
                         }
 
                         if ($thumb_resize_height != null && $thumb_resize_height != 'null') {
-                            $thumb_resize_height = intval($thumb_resize_height * $scale);
+                            $thumb_resize_height = $thumb_resize_height * $scale;
                         }
 
-                        $image = InterventionImage::make($file)->orientate();
-                        $image->insert($this->getWatermarkImage($thumb_resize_width), 'center');
-
-                        $image->resize(
+                        $image = InterventionImage::make($file)
+                            ->orientate()
+                            ->resize(
                                 $thumb_resize_width,
                                 $thumb_resize_height,
                                 function (Constraint $constraint) {
@@ -88,14 +93,12 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
                                     }
                                 }
                             )->encode($file->getClientOriginalExtension(), $resize_quality);
-                    } elseif (isset($thumbnails->crop->width) && isset($thumbnails->crop->height)) {
+                    } elseif (isset($this->options->thumbnails) && isset($thumbnails->crop->width) && isset($thumbnails->crop->height)) {
                         $crop_width = $thumbnails->crop->width;
                         $crop_height = $thumbnails->crop->height;
-
-                        $image = InterventionImage::make($file)->orientate();
-                        $image->insert($this->getWatermarkImage($crop_width), 'center');
-
-                        $image->fit($crop_width, $crop_height)
+                        $image = InterventionImage::make($file)
+                            ->orientate()
+                            ->fit($crop_width, $crop_height)
                             ->encode($file->getClientOriginalExtension(), $resize_quality);
                     }
 
@@ -106,9 +109,9 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
                     );
                 }
             }
-
-            return $fullPath;
         }
+
+        return json_encode($filesPath);
     }
 
     private function getWatermarkImage ($imageWidth)
@@ -132,30 +135,4 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
         return InterventionImage::canvas($width, intval($width / 2));
     }
 
-    private function is_animated_gif($filename)
-    {
-        $raw = file_get_contents($filename);
-
-        $offset = 0;
-        $frames = 0;
-        while ($frames < 2) {
-            $where1 = strpos($raw, "\x00\x21\xF9\x04", $offset);
-            if ($where1 === false) {
-                break;
-            } else {
-                $offset = $where1 + 1;
-                $where2 = strpos($raw, "\x00\x2C", $offset);
-                if ($where2 === false) {
-                    break;
-                } else {
-                    if ($where1 + 8 == $where2) {
-                        $frames++;
-                    }
-                    $offset = $where2 + 1;
-                }
-            }
-        }
-
-        return $frames > 1;
-    }
 }

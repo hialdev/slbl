@@ -2,6 +2,10 @@
 
 return [
 
+    'watermark' => [
+        'src' => '/src/image/logo-opacity.png',
+        'scale' => 0.9
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Name
