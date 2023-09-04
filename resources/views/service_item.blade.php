@@ -30,9 +30,9 @@
                 <div class="mb-4">
                     <div class="owl-carousel item-carousel owl-theme">
                         @forelse (json_decode($service->images, true) as $image)
-                        <img src="{{Voyager::image($image)}}" alt="Image {{$service->title}} service" class="d-block rounded-4">
+                        <img src="{{Voyager::image($image)}}" alt="Image {{$service->title}} service" class="d-block rounded-4" style="aspect-ratio:16/9; object-fit:cover">
                         @empty
-                        <img data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" src="{{Voyager::image($service->image)}}" alt="Img {{$service->title}}" class="rounded-4 d-block w-100 my-3" style="aspect-ratio:1/1">
+                        <img data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" src="{{Voyager::image($service->image)}}" alt="Img {{$service->title}}" class="rounded-4 d-block w-100 my-3" style="aspect-ratio:1/1; object-fit:cover">
                         @endforelse
                     </div>
                     <div class="d-flex gap-3 my-4 align-items-center justify-content-between">

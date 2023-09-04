@@ -35,7 +35,7 @@ class ProductController extends Controller
 
     public function show($slug) {
         $meta = Page::all()->keyBy('slug');
-        $product = Product::where('slug',$slug)->firstOrFail();
+        $product = Product::where('slug','=',$slug)->firstOrFail();
         $seo = (object)[
             'title' => $product->title ?? $meta->get('default')->meta_title,
             'desc' => $product->meta_description ?? $meta->get('default')->meta_desc,
@@ -48,9 +48,9 @@ class ProductController extends Controller
         $product_list1 = Product::latest()->limit(4)->get();
         $product_list = ProductCategory::where('slug',$product->category->slug)->firstOrFail();
         
-        foreach ($product_list->products as $product) {
-            if ($product->slug != $slug) {
-                array_push($suggests, $product);
+        foreach ($product_list->products as $prod) {
+            if ($prod->slug != $slug) {
+                array_push($suggests, $prod);
             }
         }
         
