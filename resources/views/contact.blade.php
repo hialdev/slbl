@@ -12,7 +12,7 @@
         <div class="p-1 bg-danger mb-3" style="width: 2em;"></div>
         <div class="row">
             <div class="col-12 mb-4">
-                <img src="{{Voyager::image(setting('typography.contact_image'))}}" alt="Image Kantor" class="d-block w-100 rounded-4" style="aspect-ratio:16/9;object-fit:cover">
+                <img src="{{Voyager::image($image->image)}}" alt="Image Kantor" class="d-block w-100 rounded-4" style="aspect-ratio:16/9;object-fit:cover">
             </div>
             <div class="col-12 mb-4">
                 <iframe src="{{setting('site.gmap')}}" style="border:0;min-height: 30em;width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

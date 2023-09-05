@@ -83,7 +83,7 @@
             @forelse ($suggests as $suggest)
             <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" class="col-6 col-lg-4 col-xl-3">
                 <a href="{{route('sparepart.show',$suggest->slug)}}" class="text-decoration-none d-block">
-                    <img src="{{ Voyager::image($suggest->thumbnail('cropped')) == "" ? Voyager::image($suggest->thumbnail('cropped')) : Voyager::image($suggest->image)}}" alt="Image {{$suggest->title}}" class="w-100 d-block" style="aspect-ratio:1">
+                    <img src="{{ Voyager::image($suggest->thumbnail('cropped')) == "" ? Voyager::image($suggest->thumbnail('cropped')) : Voyager::image($suggest->image)}}" alt="Image {{$suggest->title}}" class="w-100 d-block" style="aspect-ratio:1/1;object-fit:cover;">
                     <div class="text-dark fs-6 fw-semibold py-1">
                         {{$suggest->title}}
                         <div class="d-flex align-items-center gap-3 text-danger">

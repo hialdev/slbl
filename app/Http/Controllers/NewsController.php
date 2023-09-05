@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImageContent;
 use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\Page;
@@ -38,10 +39,10 @@ class NewsController extends Controller
         }
     
         $news = $news->paginate($limit);
-
+        $image = ImageContent::where('code','=','news')->firstOrFail();
         $tags = NewsCategory::all();
         
-        return view('news', compact('seo','news', 'tags'));
+        return view('news', compact('seo','news', 'tags','image'));
     }
 
     public function show($slug) {

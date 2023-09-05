@@ -56,7 +56,7 @@
             @forelse ($suggests as $suggest)
             <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" class="col-6 col-lg-4 col-xl-3">
                 <a href="{{route('news.show',$suggest->slug)}}" class="d-block mb-4 text-decoration-none text-dark">
-                    <img src="{{ Voyager::image($suggest->thumbnail('cropped')) == "" ? Voyager::image($suggest->thumbnail('cropped')) : Voyager::image($suggest->image)}}" alt="Image {{$suggest->title}} News" class="w-100 mb-2" style="aspect-ratio:16/9">
+                    <img src="{{ Voyager::image($suggest->thumbnail('cropped')) == "" ? Voyager::image($suggest->thumbnail('cropped')) : Voyager::image($suggest->image)}}" alt="Image {{$suggest->title}} News" class="w-100 mb-2" style="aspect-ratio:16/9;object-fit:cover;">
                     <h6 class="lc lc-3 mb-2">{{$suggest->title}}</h6>
                     <p class="fs-6 text-secondary lc lc-3 text-justify">{{$suggest->meta_description}}</p>
                 </a>

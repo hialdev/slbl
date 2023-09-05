@@ -8,7 +8,7 @@
 @section('content')
 <section>
     <div class="position-relative">
-        <img src="{{Voyager::image(setting('typography.news_image'))}}" alt="{{setting('typography.news_title')}}" class="d-block w-100 object-fit-cover" style="aspect-ratio:16/6">
+        <img src="{{Voyager::image($image->image)}}" alt="{{setting('typography.news_title')}}" class="d-block w-100 object-fit-cover" style="aspect-ratio:16/6; object-fit:cover;">
         <div class="container position-absolute top-0 start-0 end-0 bottom-0 d-flex flex-column align-items-center justify-content-center text-center py-5 text-white text-shadow">
             <h1>{{setting('typography.news_title')}}</h1>
             <p class="d-none d-md-block" style="max-width: 40em;">{{setting('typography.news_desc')}}</p>
@@ -60,7 +60,7 @@
             @forelse ($news as $new)
             <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" class="col-6 col-lg-4 col-xl-3">
                 <a href="{{route('news.show',$new->slug)}}" class="d-block mb-4 text-decoration-none text-dark">
-                    <img src="{{ Voyager::image($new->thumbnail('cropped')) == "" ? Voyager::image($new->thumbnail('cropped')) : Voyager::image($new->image)}}" alt="Image {{$new->title}} News" class="w-100 mb-3" style="aspect-ratio:16/9">
+                    <img src="{{ Voyager::image($new->thumbnail('cropped')) == "" ? Voyager::image($new->thumbnail('cropped')) : Voyager::image($new->image)}}" alt="Image {{$new->title}} News" class="w-100 mb-3" style="aspect-ratio:16/9;object-fit:cover;">
                     <h6 class="lc lc-3 mb-2">{{$new->title}}</h6>
                     <p class="fs-6 text-secondary lc lc-3 text-justify">{{$new->meta_description}}</p>
                 </a>

@@ -68,7 +68,7 @@
             @forelse ($news as $new)
             <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" class="col-6 col-lg-4 col-xl-3">
                 <a href="{{route('news.show',$new->slug)}}" class="d-block mb-4 text-decoration-none text-dark">
-                    <img src="{{ Voyager::image($new->thumbnail('cropped')) == "" ? Voyager::image($new->thumbnail('cropped')) : Voyager::image($new->image)}}" alt="Image {{$new->title}} News" class="w-100 mb-3" style="aspect-ratio:16/9">
+                    <img src="{{ Voyager::image($new->thumbnail('cropped')) == "" ? Voyager::image($new->thumbnail('cropped')) : Voyager::image($new->image)}}" alt="Image {{$new->title}} News" class="w-100 mb-3" style="aspect-ratio:16/9;object-fit:cover;">
                     <h6 class="lc lc-3 mb-2">{{$new->title}}</h6>
                     <p class="fs-6 text-secondary lc lc-3 text-justify">{{$new->meta_description}}</p>
                 </a>

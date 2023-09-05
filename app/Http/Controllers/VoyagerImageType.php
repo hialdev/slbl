@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image as InterventionImage;
+use TCG\Voyager\Facades\Voyager;
 
 class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
 {
@@ -115,13 +116,17 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
     {
         $scale = config('app.watermark.scale', 0.5);
         $width = intval($imageWidth * $scale);
+        $file_wm = setting('site.watermark') != "" ? Voyager::image(setting('site.watermark')) : public_path().config('app.watermark.src');
 
-        if ($file_wm = config('app.watermark.src'))
+        if ($file_wm)
         {
-            $watermark = public_path().$file_wm;
+            $watermark = $file_wm;
+            if (strpos($watermark, "http") === 0) {
+                $watermark = explode('/',$watermark);
+                $watermark = public_path().'/'.$watermark[3].'/'.$watermark[4].'/'.$watermark[5].'/'.$watermark[6];
+            }
 
-            if (file_exists($watermark))
-            {
+            if (file_exists($watermark)) {
                 //return InterventionImage::make($watermark)->resize(intval($imageWidth * $scale));
                 return InterventionImage::make($watermark)->resize($width, null, function ($constraint) {
                     $constraint->aspectRatio();

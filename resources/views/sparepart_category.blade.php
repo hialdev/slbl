@@ -46,7 +46,7 @@
             @forelse ($spareparts as $sparepart)
             <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="4000" class="mb-4 col-6 col-md-4 col-lg-3">
                 <a href="{{route('sparepart.show',$sparepart->slug)}}" class="text-decoration-none d-block">
-                    <img src="{{ Voyager::image($sparepart->thumbnail('cropped')) == "" ? Voyager::image($sparepart->thumbnail('cropped')) : Voyager::image($sparepart->image)}}" alt="Image {{$sparepart->title}}" class="w-100 d-block" style="aspect-ratio:1">
+                    <img src="{{ Voyager::image($sparepart->thumbnail('cropped')) == "" ? Voyager::image($sparepart->thumbnail('cropped')) : Voyager::image($sparepart->image)}}" alt="Image {{$sparepart->title}}" class="w-100 d-block" style="aspect-ratio:1/1;object-fit:cover;">
                     <div class="text-dark fs-6 fw-semibold py-1">
                         {{$sparepart->title}}
                         <div class="d-flex align-items-center gap-3 text-danger">

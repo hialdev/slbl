@@ -6,6 +6,7 @@ use App\Mail\WebMail;
 use App\Models\Brand;
 use App\Models\Client;
 use App\Models\HeroBanner;
+use App\Models\ImageContent;
 use App\Models\News;
 use App\Models\Office;
 use App\Models\Page;
@@ -48,8 +49,10 @@ class PageController extends Controller
             'image' => Voyager::image($meta->get('home')->image) ?? Voyager::image($meta->get('default')->image),
             'keyword' => $meta->get('home')->meta_keyword ?? $meta->get('default')->meta_keyword,
         ];
+        $image = ImageContent::where('code','=','about')->firstOrFail();
+
         
-        return view('about',compact('seo'));
+        return view('about',compact('seo','image'));
     }
 
     public function contact(){
@@ -63,8 +66,9 @@ class PageController extends Controller
 
         $offices = Office::all();
         $sosmeds = Sosmed::all();
+        $image = ImageContent::where('code','=','contact')->firstOrFail();
 
-        return view('contact', compact('seo','offices','sosmeds'));
+        return view('contact', compact('seo','offices','sosmeds', 'image'));
     }
 
     public function send(Request $req) {
