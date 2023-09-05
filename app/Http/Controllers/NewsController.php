@@ -18,10 +18,10 @@ class NewsController extends Controller
         
         $meta = Page::all()->keyBy('slug');
         $seo = (object)[
-            'title' => $meta->get('home')->meta_title ?? $meta->get('default')->meta_title,
-            'desc' => $meta->get('home')->meta_desc ?? $meta->get('default')->meta_desc,
-            'image' => Voyager::image($meta->get('home')->image) ?? Voyager::image($meta->get('default')->image),
-            'keyword' => $meta->get('home')->meta_keyword ?? $meta->get('default')->meta_keyword,
+            'title' => $meta->get('news')->meta_title ?? $meta->get('default')->meta_title,
+            'desc' => $meta->get('news')->meta_desc ?? $meta->get('default')->meta_desc,
+            'image' => Voyager::image($meta->get('news')->image) ?? Voyager::image($meta->get('default')->image),
+            'keyword' => $meta->get('news')->meta_keyword ?? $meta->get('default')->meta_keyword,
         ];
 
         $news = News::query();
