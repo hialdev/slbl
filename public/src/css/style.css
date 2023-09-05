@@ -99,6 +99,10 @@ header {
 .content ul > li, .content ol > li {
   margin-bottom: 0.7em;
 }
+.content p, .content span, .content li {
+  font-size: medium !important;
+  line-height: 165% !important;
+}
 
 .menu {
   overflow-y: auto;
