@@ -7,7 +7,7 @@ $('.hero-carousel').owlCarousel({
     autoHeight:true,
     autoplay:true,
     autoplayTimeout:1000,
-    autoplayHoverPause:true
+    autoplayHoverPause:false
 })
 
 const item = $('.item-carousel');
