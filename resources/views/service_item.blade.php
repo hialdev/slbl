@@ -21,11 +21,11 @@
             <div class="col-12 col-lg-9">
                 <h1 class="text-capitalize">{{$service->title}}</h1>
                 <div class="d-flex align-items-center gap-2 text-warning my-4">
-                    @if ($product->rating != 0)
+                    @if ($service->rating != 0)
                         @php
                             $i = 1;
                         @endphp
-                        @while ($i <= (int)$product->rating)
+                        @while ($i <= (int)$service->rating)
                             <span class="iconify" data-icon="ph:star-fill"></span>
                             @php
                                 $i++;

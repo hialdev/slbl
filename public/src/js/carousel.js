@@ -4,7 +4,10 @@ $('.hero-carousel').owlCarousel({
     nav:false,
     items:1,
     dotsContainer:'#hero-dots',
-    autoHeight:true
+    autoHeight:true,
+    autoplay:true,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true
 })
 
 const item = $('.item-carousel');

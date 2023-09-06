@@ -100,7 +100,7 @@ header {
   margin-bottom: 0.7em;
 }
 .content p, .content span, .content li {
-  font-size: medium !important;
+  font-size: large !important;
   line-height: 165% !important;
 }
 
