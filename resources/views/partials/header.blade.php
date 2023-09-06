@@ -12,7 +12,7 @@
                         <span class="iconify" data-icon="pajamas:mail"></span>
                         Mail
                     </a>
-                    <a href="{{'telp:'.setting('site.telp')}}" target="_blank" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
+                    <a href="{{'tel:'.setting('site.telp')}}" target="_blank" class="text-decoration-none d-flex text-white text-nowrap gap-2 align-items-center px-3 border-end">
                         <span class="iconify" data-icon="teenyicons:phone-outline"></span>
                         Telp
                     </a>
@@ -31,7 +31,7 @@
     <div class="shadow-lg py-2 md:py-3 menu-box">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between gap-3 position-relative">
-                <a href="{{route('home')}}" class="d-block"><img src="{{Voyager::image(setting('site.logo'))}}" alt="Logo brand" style="width:100px;height:60px;"></a>
+                <a href="{{route('home')}}" class="d-block"><img src="{{Voyager::image(setting('site.logo'))}}" alt="Logo brand" style="height:{{setting('site.logo_size') != "" ? setting('site.logo_size') : "80"}}px;"></a>
                 <nav class="d-flex align-items-center gap-5 menu">
                     <div class="order-last order-md-first d-flex align-items-center border border-2 rounded-4 overflow-hidden">
                         <input type="text" class="form-control border-0 w-100 outline-0 rounded-0" id="searchInput" placeholder="Cari disini..">

@@ -55,7 +55,7 @@ class ServiceController extends Controller
         }
         
         foreach ($service_list1 as $services1) {
-            if(count($suggests) < 4){
+            if(count($suggests) < 3){
                 array_push($suggests,$services1);
             }else{
                 break;

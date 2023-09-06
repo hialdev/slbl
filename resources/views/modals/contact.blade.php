@@ -4,7 +4,7 @@
             <div class="ms-auto">
                 <div class="d-flex align-items-center cursor-pointer">
                     <div class="rounded-5 bg-primary text-white fw-semibold p-2 px-3" style="margin-right: -1em; border-top-right-radius: 0px !important ; border-bottom-right-radius: 0px !important ;">Call</div>
-                    <a href="{{"telp:".setting('site.telp')}}" class="text-decoration-none d-inline-flex align-items-center justify-content-center rounded-5 bg-primary text-white" style="padding: 0.8em"><span class="iconify fs-2" data-icon="ph:phone"></span></a>
+                    <a href="{{"tel:".setting('site.telp')}}" class="text-decoration-none d-inline-flex align-items-center justify-content-center rounded-5 bg-primary text-white" style="padding: 0.8em"><span class="iconify fs-2" data-icon="ph:phone"></span></a>
                 </div>
             </div>
             <div class="ms-auto">

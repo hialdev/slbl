@@ -6,7 +6,7 @@ $('.hero-carousel').owlCarousel({
     dotsContainer:'#hero-dots',
     autoHeight:true,
     autoplay:true,
-    autoplayTimeout:1000,
+    autoplayTimeout:7000,
     autoplayHoverPause:false
 })
 

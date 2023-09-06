@@ -44,25 +44,25 @@
                 </form>
             </div>
             <div class="col-12">
-                <div class="d-flex flex-column gap-3 my-2 ms-3">
+                <div class="d-flex flex-wrap">
                     @forelse ($services as $service)
-                    <a data-aos="fade-down" data-aos-delay="00" data-aos-duration="4000" href="{{route('service.show',$service->slug)}}" class="row bg-white text-decoration-none text-dark w-100 overflow-hidden rounded-4">
-                        <div class=" col-12 col-md-6 p-0 m-0">
-                            <img src="{{ Voyager::image($service->thumbnail('cropped')) == "" ? Voyager::image($service->thumbnail('cropped')) : Voyager::image($service->image)}}" alt="{{$service->title}} Image" class="d-block w-100 p-0" style="max-width: 40em;aspect-ratio:10/7;object-fit:cover;">
-                        </div>
-                        <div class=" col-12 col-md-6 p-0 m-0">
-                            <div class="p-5 bg-white d-flex flex-column h-100">
-                                <h4>{{$service->title}}</h4>
-                                <p>{{$service->meta_description}}</p>
-                                <div class="mt-auto d-flex justify-content-end">
-                                    <div class="d-inline-flex align-items-center text-decoration-none text-white bg-danger p-2 px-3 gap-2">
-                                        Read More
-                                        <span class="iconify" data-icon="pajamas:arrow-right"></span>
+                    <div class="col-12 col-md-6 col-lg-4 p-3">
+                        <a data-aos="fade-down" data-aos-delay="00" data-aos-duration="4000" href="{{route('service.show', $service->slug)}}" class="row bg-white text-decoration-none text-dark w-100 overflow-hidden rounded-4">
+                            <div class=" col-12 p-0 m-0">
+                                <img src="{{ Voyager::image($service->thumbnail('cropped')) == "" ? Voyager::image($service->thumbnail('cropped')) : Voyager::image($service->image)}}" alt="{{$service->title}} Image" class="d-block w-100 p-0" style="max-width: 40em;aspect-ratio:10/7;object-fit:cover">
+                            </div>
+                            <div class=" col-12 p-0 m-0">
+                                <div class="p-4 bg-white d-flex flex-column h-100">
+                                    <h4>{{$service->title}}</h4>
+                                    <p class="lc lc-3">{{$service->meta_description}}</p>
+                                    <div class="d-flex align-items-center gap-3 text-danger">
+                                        <span class="iconify" data-icon="bxs:category-alt"></span>
+                                        <span class="text-lowercase">{{isset($service->category->name) ? $service->category->name : 'undefined'}}</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     @empty
                     <div class="p-4 text-center">No Data</div>
                     @endforelse

@@ -14,7 +14,7 @@
         <div class="owl-carousel owl-theme hero-carousel">
             @forelse ($heros as $hero)
             <div class="position-relative">
-                <img src="{{Voyager::image($hero->image)}}" alt="{{$hero->title}} Image" class="w-100" style="aspect-ratio:16/9 !important;object-fit:cover;">
+                <img src="{{Voyager::image($hero->image)}}" alt="{{$hero->title}} Image" class="w-100 mx-auto" style="aspect-ratio:16/6 !important;object-fit:cover;max-width:85em">
                 <div class="hero-content top-0 bottom-0 end-0 start-0">
                     <div class="container p-4 h-100">
                         <div class="d-flex align-items-center h-100">
