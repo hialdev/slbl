@@ -35,7 +35,7 @@ class ServiceController extends Controller
 
     public function show($slug) {
         $meta = Page::all()->keyBy('slug');
-        $service = Service::where('slug',$slug)->firstOrFail();
+        $service = Service::where('slug','=',$slug)->firstOrFail();
         $seo = (object)[
             'title' => $service->title ?? $meta->get('default')->meta_title,
             'desc' => $service->meta_description ?? $meta->get('default')->meta_desc,
@@ -48,9 +48,9 @@ class ServiceController extends Controller
         $service_list1 = Service::latest()->limit(4)->get();
         $service_list = ServiceCategory::where('slug',$service->category->slug)->firstOrFail();
         
-        foreach ($service_list->services as $service) {
-            if ($service->slug != $slug) {
-                array_push($suggests, $service);
+        foreach ($service_list->services as $sv) {
+            if ($sv->slug != $slug) {
+                array_push($suggests, $sv);
             }
         }
         

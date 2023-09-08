@@ -35,7 +35,7 @@ class SparepartController extends Controller
 
     public function show($slug) {
         $meta = Page::all()->keyBy('slug');
-        $sparepart = Sparepart::where('slug',$slug)->firstOrFail();
+        $sparepart = Sparepart::where('slug','=',$slug)->firstOrFail();
         $seo = (object)[
             'title' => $sparepart->title ?? $meta->get('default')->meta_title,
             'desc' => $sparepart->meta_description ?? $meta->get('default')->meta_desc,
@@ -48,9 +48,9 @@ class SparepartController extends Controller
         $sparepart_list1 = Sparepart::latest()->limit(4)->get();
         $sparepart_list = SparepartCategory::where('slug',$sparepart->category->slug)->firstOrFail();
         
-        foreach ($sparepart_list->spareparts as $sparepart) {
-            if ($sparepart->slug != $slug) {
-                array_push($suggests, $sparepart);
+        foreach ($sparepart_list->spareparts as $sp) {
+            if ($sp->slug != $slug) {
+                array_push($suggests, $sp);
             }
         }
         
