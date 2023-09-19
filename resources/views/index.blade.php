@@ -69,7 +69,7 @@
                             @if (isset($category->icon))
                             <span class="iconify fs-1" data-icon="{{$category->icon}}"></span>
                             @else
-                            <img src="{{Voyager::image($category->image_icon)}}" alt="Image Category" class="d-block rounded-2" style="max-width: 4em;aspect-ratio:1/1">
+                            <img src="{{Voyager::image($category->image_icon)}}" alt="{{$category->name}} Icon" class="d-block rounded-2" style="max-width: 4em;aspect-ratio:1/1">
                             @endif
                         </div>
                         <h6>{{$category->name}}</h6>

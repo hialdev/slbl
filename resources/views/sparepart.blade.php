@@ -12,9 +12,14 @@
         <p class="mb-3">{{setting('typography.sparepart_desc')}}</p>
         <div data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" class="row">
             @forelse ($categories as $category)
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                <a href="{{route('sparepart.category',$category->slug)}}" class="d-block text-decoration-none text-dark bg-white fw-semibold p-3 rounded-3 px-4">{{$category->name}}</a>
-            </div>
+                <div class="col-6 col-md-4 col-lg-2 text-center">
+                    <a href="{{route('sparepart.category',$category->slug)}}" class="m-3 d-block text-decoration-none text-dark">
+                        <div class="rounded-4 bg-white d-flex align-items-center justify-content-center p-3 p-lg-4 mb-2 mx-auto" style="height:6em;width:6em">
+                            <img src="{{Voyager::image($category->image_icon)}}" alt="{{$category->name}} Icon" class="d-block rounded-2" style="max-width: 4em;aspect-ratio:1/1">
+                        </div>
+                        <h6>{{$category->name}}</h6>
+                    </a>
+                </div>
             @empty
             <div class="p-4 fw-bold">No Data</div>
             @endforelse
@@ -48,6 +53,31 @@
             @empty
             <div class="p-4 text-center">No Data</div>
             @endforelse
+        </div>
+        <div class="d-flex align-items-center py-5 justify-content-between">
+            @php
+                $total = $spareparts->total(); // Total data
+                $lastPage = $spareparts->lastPage(); // Total halaman terakhir
+                $perPage = $spareparts->perPage(); // Data per halaman
+                $currentPage = $spareparts->currentPage(); // Halaman saat ini
+            @endphp
+            <a href="{{ $spareparts->url(1) }}" class="p-3 bg-dark text-white rounded-5 text-dark d-flex align-items-center justify-content-center">
+                <span class="iconify" data-icon="icon-park-outline:to-left"></span>
+            </a>
+            <div class="d-flex align-items-center gap-3 justify-content-center">
+                @php
+                    $pagePaginate = $currentPage > 2 ? $currentPage-2 : $currentPage;
+                @endphp
+                @while ($pagePaginate <= $lastPage && $pagePaginate <= $currentPage+2)
+                    <a href="{{ $spareparts->url($pagePaginate) }}" class="text-dark {{ $pagePaginate === $currentPage ? 'fw-bold' : ''}}">{{ $pagePaginate }}</a>
+                    @php
+                        $pagePaginate++;
+                    @endphp
+                @endwhile
+            </div>
+            <a href="{{ $spareparts->url($lastPage) }}" class="p-3 bg-dark text-white rounded-5 text-dark d-flex align-items-center justify-content-center">
+                <span class="iconify" data-icon="icon-park-outline:to-right"></span>
+            </a>
         </div>
     </div>
 </section>

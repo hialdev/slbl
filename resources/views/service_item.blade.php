@@ -40,11 +40,13 @@
                 </div>
                 <div class="mb-4">
                     <div class="owl-carousel item-carousel owl-theme">
-                        @forelse (json_decode($service->images, true) as $image)
-                        <img src="{{ Voyager::image($image)}}" alt="Image {{$service->title}} service" class="d-block rounded-4" style="aspect-ratio:16/9; object-fit:cover">
-                        @empty
-                        <img data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" src="{{ Voyager::image($service->thumbnail('cropped')) == "" ? Voyager::image($service->thumbnail('cropped')) : Voyager::image($service->image)}}" class="rounded-4 d-block w-100 my-3" style="aspect-ratio:1/1; object-fit:cover">
-                        @endforelse
+                        @if (isset($service->images))
+                            @foreach (json_decode($service->images, true) as $image)
+                                <img src="{{ Voyager::image($image)}}" alt="Image {{$service->title}} service" class="d-block rounded-4" style="aspect-ratio:16/9; object-fit:cover">
+                            @endforeach
+                        @else
+                        	<img data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" src="{{ Voyager::image($service->thumbnail('cropped')) == "" ? Voyager::image($service->thumbnail('cropped')) : Voyager::image($service->image)}}" class="rounded-4 d-block w-100 my-3" style="aspect-ratio:1/1; object-fit:cover">
+                        @endif
                     </div>
                     <div class="d-flex gap-3 my-4 align-items-center justify-content-between">
                         <div class="prev-item cursor-pointer p-2 rounded-5 border border-2 border-dark d-flex align-items-center justify-content-center">
@@ -108,22 +110,9 @@
         </div>
     </div>
 </section>
-<section>
-    <div class="container py-5">
-        <div class="">
-            <div class="row align-items-center">
-                <div data-aos="fade-right" data-aos-delay="0" data-aos-duration="1000" class="col-12 col-lg-6 mb-3">
-                    <img src="https://placehold.co/450x300" alt="" class="w-100">
-                </div>
-                <div data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000" class="col-12 col-lg-6 px-4">
-                    <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis molestias ratione aut pariatur odio, est ab dignissimos! Asperiores, mollitia quas? Porro nisi error, ea tempore consequatur maiores est officia fugiat.</p>
-                    <a href="#" class="btn btn-danger rounded-0">CTA Button</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+@include('partials.section',['code'=>'service-item'])
+
 @endsection
 
 @section('beforebody')

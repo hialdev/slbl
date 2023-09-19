@@ -40,8 +40,6 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
 
             $resize_quality = isset($this->options->quality) ? intval($this->options->quality) : 75;
 
-            $image->insert($this->getWatermarkImage($resize_width), 'center');
-
             $image = $image->resize(
                 $resize_width,
                 $resize_height,
@@ -51,7 +49,11 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
                         $constraint->upsize();
                     }
                 }
-            )->encode($file->getClientOriginalExtension(), $resize_quality);
+            );
+
+            $image->insert($this->getWatermarkImage($resize_width), 'center');
+            
+            $image->encode($file->getClientOriginalExtension(), $resize_quality);
 
             if ($this->is_animated_gif($file)) {
                 Storage::disk(config('voyager.storage.disk'))->put($fullPath, file_get_contents($file), 'public');
@@ -77,27 +79,29 @@ class VoyagerImageType extends \TCG\Voyager\Http\Controllers\ContentTypes\Image
                         }
 
                         $image = InterventionImage::make($file)->orientate();
-                        $image->insert($this->getWatermarkImage($thumb_resize_width), 'center');
-
+                        
                         $image->resize(
-                                $thumb_resize_width,
-                                $thumb_resize_height,
-                                function (Constraint $constraint) {
-                                    $constraint->aspectRatio();
-                                    if (isset($this->options->upsize) && !$this->options->upsize) {
-                                        $constraint->upsize();
-                                    }
+                            $thumb_resize_width,
+                            $thumb_resize_height,
+                            function (Constraint $constraint) {
+                                $constraint->aspectRatio();
+                                if (isset($this->options->upsize) && !$this->options->upsize) {
+                                    $constraint->upsize();
                                 }
-                            )->encode($file->getClientOriginalExtension(), $resize_quality);
+                            }
+                        );
+                        $image->insert($this->getWatermarkImage($thumb_resize_width), 'center');
+                        $image->encode($file->getClientOriginalExtension(), $resize_quality);
+
                     } elseif (isset($thumbnails->crop->width) && isset($thumbnails->crop->height)) {
                         $crop_width = $thumbnails->crop->width;
                         $crop_height = $thumbnails->crop->height;
 
                         $image = InterventionImage::make($file)->orientate();
+                        
+                        $image->fit($crop_width, $crop_height);
                         $image->insert($this->getWatermarkImage($crop_width), 'center');
-
-                        $image->fit($crop_width, $crop_height)
-                            ->encode($file->getClientOriginalExtension(), $resize_quality);
+                        $image->encode($file->getClientOriginalExtension(), $resize_quality);
                     }
 
                     Storage::disk(config('voyager.storage.disk'))->put(

@@ -46,8 +46,6 @@ class VoyagerMultipleImageType extends \TCG\Voyager\Http\Controllers\ContentType
             }
 
             $resize_quality = intval($this->options->quality ?? 75);
-            
-            $image->insert($this->getWatermarkImage($resize_width), 'center');
 
             $filename = Str::random(20);
             $path = $this->slug.DIRECTORY_SEPARATOR.date('FY').DIRECTORY_SEPARATOR;
@@ -63,7 +61,11 @@ class VoyagerMultipleImageType extends \TCG\Voyager\Http\Controllers\ContentType
                         $constraint->upsize();
                     }
                 }
-            )->encode($file->getClientOriginalExtension(), $resize_quality);
+            );
+
+            $image->insert($this->getWatermarkImage($resize_width), 'center');
+            $image->encode($file->getClientOriginalExtension(), $resize_quality);
+
 
             Storage::disk(config('voyager.storage.disk'))->put($filePath, (string) $image, 'public');
 
@@ -93,14 +95,21 @@ class VoyagerMultipleImageType extends \TCG\Voyager\Http\Controllers\ContentType
                                         $constraint->upsize();
                                     }
                                 }
-                            )->encode($file->getClientOriginalExtension(), $resize_quality);
+                            );
+
+                        $image->insert($this->getWatermarkImage($thumb_resize_width), 'center');
+                        $image->encode($file->getClientOriginalExtension(), $resize_quality);
+
                     } elseif (isset($this->options->thumbnails) && isset($thumbnails->crop->width) && isset($thumbnails->crop->height)) {
                         $crop_width = $thumbnails->crop->width;
                         $crop_height = $thumbnails->crop->height;
                         $image = InterventionImage::make($file)
                             ->orientate()
-                            ->fit($crop_width, $crop_height)
-                            ->encode($file->getClientOriginalExtension(), $resize_quality);
+                            ->fit($crop_width, $crop_height);
+                            
+                        $image->insert($this->getWatermarkImage($crop_width), 'center');
+                        $image->encode($file->getClientOriginalExtension(), $resize_quality);
+
                     }
 
                     Storage::disk(config('voyager.storage.disk'))->put(

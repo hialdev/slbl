@@ -16,7 +16,7 @@
                             @if (isset($category->icon))
                             <span class="iconify fs-1" data-icon="{{$category->icon}}"></span>
                             @else
-                            <img src="{{Voyager::image($category->image_icon)}}" alt="Image Category" class="d-block rounded-2" style="max-width: 4em;aspect-ratio:1/1">
+                            <img src="{{Voyager::image($category->image_icon)}}" alt="{{$category->name}} Icon" class="d-block rounded-2" style="max-width: 4em;aspect-ratio:1/1">
                             @endif
                         </div>
                         <h6>{{$category->name}}</h6>
@@ -52,6 +52,31 @@
             <div class="col-12 p-4 text-center">No Data</div>
             @endforelse
             
+        </div>
+        <div class="d-flex align-items-center py-5 justify-content-between">
+            @php
+                $total = $products->total(); // Total data
+                $lastPage = $products->lastPage(); // Total halaman terakhir
+                $perPage = $products->perPage(); // Data per halaman
+                $currentPage = $products->currentPage(); // Halaman saat ini
+            @endphp
+            <a href="{{ $products->url(1) }}" class="p-3 bg-dark text-white rounded-5 text-dark d-flex align-items-center justify-content-center">
+                <span class="iconify" data-icon="icon-park-outline:to-left"></span>
+            </a>
+            <div class="d-flex align-items-center gap-3 justify-content-center">
+                @php
+                    $pagePaginate = $currentPage > 2 ? $currentPage-2 : $currentPage;
+                @endphp
+                @while ($pagePaginate <= $lastPage && $pagePaginate <= $currentPage+2)
+                    <a href="{{ $products->url($pagePaginate) }}" class="text-dark {{ $pagePaginate === $currentPage ? 'fw-bold' : ''}}">{{ $pagePaginate }}</a>
+                    @php
+                        $pagePaginate++;
+                    @endphp
+                @endwhile
+            </div>
+            <a href="{{ $products->url($lastPage) }}" class="p-3 bg-dark text-white rounded-5 text-dark d-flex align-items-center justify-content-center">
+                <span class="iconify" data-icon="icon-park-outline:to-right"></span>
+            </a>
         </div>
     </div>
 </section>

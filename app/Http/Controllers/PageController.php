@@ -44,10 +44,10 @@ class PageController extends Controller
     public function about(){
         $meta = Page::all()->keyBy('slug');
         $seo = (object)[
-            'title' => $meta->get('home')->meta_title ?? $meta->get('default')->meta_title,
-            'desc' => $meta->get('home')->meta_desc ?? $meta->get('default')->meta_desc,
-            'image' => Voyager::image($meta->get('home')->image) ?? Voyager::image($meta->get('default')->image),
-            'keyword' => $meta->get('home')->meta_keyword ?? $meta->get('default')->meta_keyword,
+            'title' => $meta->get('about')->meta_title ?? $meta->get('default')->meta_title,
+            'desc' => $meta->get('about')->meta_desc ?? $meta->get('default')->meta_desc,
+            'image' => Voyager::image($meta->get('about')->image) ?? Voyager::image($meta->get('default')->image),
+            'keyword' => $meta->get('about')->meta_keyword ?? $meta->get('default')->meta_keyword,
         ];
         $image = ImageContent::where('code','=','about')->firstOrFail();
 

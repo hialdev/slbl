@@ -40,11 +40,13 @@
                 </div>
                 <div class="mb-4">
                     <div class="owl-carousel item-carousel owl-theme">
-                        @forelse (json_decode($product->images, true) as $image)
-                        <img src="{{Voyager::image($image)}}" alt="Image {{$product->title}} Product" class="d-block rounded-4" style="aspect-ratio:16/9; object-fit:cover">
-                        @empty
-                        <img data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" src="{{ Voyager::image($product->thumbnail('cropped')) == "" ? Voyager::image($product->thumbnail('cropped')) : Voyager::image($product->image)}}" alt="Img {{$product->title}}" class="rounded-4 d-block w-100 my-3" style="aspect-ratio:1/1; object-fit:cover">
-                        @endforelse
+                        @if (isset($product->images))
+                            @foreach (json_decode($product->images, true) as $image)
+                                <img src="{{ Voyager::image($image)}}" alt="Image {{$product->title}} product" class="d-block rounded-4" style="aspect-ratio:16/9; object-fit:cover">
+                            @endforeach
+                        @else
+                        	<img data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000" src="{{ Voyager::image($product->thumbnail('cropped')) == "" ? Voyager::image($product->thumbnail('cropped')) : Voyager::image($product->image)}}" alt="Image {{$product->title}} product" class="rounded-4 d-block w-100 my-3" style="aspect-ratio:1/1; object-fit:cover">
+                        @endif
                     </div>
                     <div class="d-flex gap-3 my-4 align-items-center justify-content-between">
                         <div class="prev-item cursor-pointer p-2 rounded-5 border border-2 border-dark d-flex align-items-center justify-content-center">
