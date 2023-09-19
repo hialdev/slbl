@@ -32,9 +32,9 @@
                 <button type="submit" class="btn d-flex align-items-center justify-content-center btn-danger rounded-5 py-2"><span class="iconify" data-icon="iconamoon:search"></span></button>
             </form>
         </div>
-        <div class="d-flex my-5 flex-wrap">
+        <div class="row flex-wrap">
             @forelse ($services as $service)
-            <div class="col-4 p-3">
+            <div class="col-12 col-md-6 col-lg-4 p-3">
                 <a data-aos="fade-down" data-aos-delay="00" data-aos-duration="4000" href="{{route('service.show', $service->slug)}}" class="row bg-white text-decoration-none text-dark w-100 overflow-hidden rounded-4">
                     <div class=" col-12 p-0 m-0">
                         <img src="{{ Voyager::image($service->thumbnail('cropped')) == "" ? Voyager::image($service->thumbnail('cropped')) : Voyager::image($service->image)}}" alt="{{$service->title}} Image" class="d-block w-100 p-0" style="max-width: 40em;aspect-ratio:10/7;object-fit:cover">
