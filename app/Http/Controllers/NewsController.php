@@ -7,6 +7,7 @@ use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Jorenvh\Share\ShareFacade;
 use TCG\Voyager\Facades\Voyager;
 
 class NewsController extends Controller
@@ -42,10 +43,11 @@ class NewsController extends Controller
         $image = ImageContent::where('code','=','news')->firstOrFail();
         $tags = NewsCategory::all();
         
+        
         return view('news', compact('seo','news', 'tags','image'));
     }
 
-    public function show($slug) {
+    public function show($slug, Request $request) {
         $meta = Page::all()->keyBy('slug');
         $news = News::where('slug',$slug)->firstOrFail();
         $seo = (object)[
@@ -73,7 +75,15 @@ class NewsController extends Controller
             }
         }
 
-        return view('news_item', compact('seo','news','suggests'));
+        $shareLinks = ShareFacade::page($request->url(), "$seo->desc")
+                ->facebook("$seo->desc")
+                ->twitter("$seo->desc")
+                ->linkedin("$seo->desc")
+                ->whatsapp("$seo->desc")
+                ->telegram("$seo->desc")
+                ->getRawLinks();
+
+        return view('news_item', compact('seo','news','suggests','shareLinks'));
     }
 
     public function category(Request $request, $slug) {

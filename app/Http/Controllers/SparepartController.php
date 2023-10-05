@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\Sparepart;
 use App\Models\SparepartCategory;
 use Illuminate\Http\Request;
+use Jorenvh\Share\ShareFacade;
 use TCG\Voyager\Facades\Voyager;
 
 class SparepartController extends Controller
@@ -33,7 +34,7 @@ class SparepartController extends Controller
         return view('sparepart', compact('seo','spareparts','categories'));
     }
 
-    public function show($slug) {
+    public function show($slug, Request $request) {
         $meta = Page::all()->keyBy('slug');
         $sparepart = Sparepart::where('slug','=',$slug)->firstOrFail();
         $seo = (object)[
@@ -64,8 +65,15 @@ class SparepartController extends Controller
 
         $page = Page::where('slug','sparepart-show')->firstOrFail();
         $banner = $page->banner;
+        $shareLinks = ShareFacade::page($request->url(), "$seo->desc")
+                ->facebook("$seo->desc")
+                ->twitter("$seo->desc")
+                ->linkedin("$seo->desc")
+                ->whatsapp("$seo->desc")
+                ->telegram("$seo->desc")
+                ->getRawLinks();
 
-        return view('sparepart_item', compact('seo','sparepart','suggests','banner'));
+        return view('sparepart_item', compact('seo','sparepart','suggests','banner','shareLinks'));
     }
 
     public function category(Request $request, $slug) {

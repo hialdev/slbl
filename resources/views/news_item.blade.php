@@ -3,6 +3,10 @@
     @include('partials.seo', ['data' => $seo])
 @endsection
 @section('inhead')
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Share JS -->
+<script src="{{ asset('js/share.js') }}"></script>
 @endsection
 
 @section('content')
@@ -48,7 +52,8 @@
         </div>
     </div>
 </section>
-
+{{-- Share Buttons --}}
+@include('partials.share',['shareLinks'=>$shareLinks])
 <section>
     <div class="container py-5">
         <div class="fs-2 fw-semibold">News for you</div>

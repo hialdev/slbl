@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Jorenvh\Share\ShareFacade;
 use TCG\Voyager\Facades\Voyager;
 
 class ProductController extends Controller
@@ -33,7 +34,7 @@ class ProductController extends Controller
         return view('product', compact('seo','products','categories'));
     }
 
-    public function show($slug) {
+    public function show($slug, Request $request) {
         $meta = Page::all()->keyBy('slug');
         $product = Product::where('slug','=',$slug)->firstOrFail();
         $seo = (object)[
@@ -64,8 +65,15 @@ class ProductController extends Controller
 
         $page = Page::where('slug','product-show')->firstOrFail();
         $banner = $page->banner;
+        $shareLinks = ShareFacade::page($request->url(), "$seo->desc")
+                ->facebook("$seo->desc")
+                ->twitter("$seo->desc")
+                ->linkedin("$seo->desc")
+                ->whatsapp("$seo->desc")
+                ->telegram("$seo->desc")
+                ->getRawLinks();
 
-        return view('product_item', compact('seo','product','suggests','banner'));
+        return view('product_item', compact('seo','product','suggests','banner','shareLinks'));
     }
 
     public function category(Request $request, $slug) {
@@ -93,6 +101,7 @@ class ProductController extends Controller
         });
 
         $products = $products->paginate(15);
+
 
         return view('product_category', compact('seo','products','category', 'categories'));
     }

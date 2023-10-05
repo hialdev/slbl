@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
+use Jorenvh\Share\ShareFacade;
 use TCG\Voyager\Facades\Voyager;
 
 class ServiceController extends Controller
@@ -33,7 +34,7 @@ class ServiceController extends Controller
         return view('service', compact('seo','services','categories'));
     }
 
-    public function show($slug) {
+    public function show($slug, Request $request) {
         $meta = Page::all()->keyBy('slug');
         $service = Service::where('slug','=',$slug)->firstOrFail();
         $seo = (object)[
@@ -64,8 +65,15 @@ class ServiceController extends Controller
 
         $page = Page::where('slug','service-show')->firstOrFail();
         $banner = $page->banner;
+        $shareLinks = ShareFacade::page($request->url(), "$seo->desc")
+                ->facebook("$seo->desc")
+                ->twitter("$seo->desc")
+                ->linkedin("$seo->desc")
+                ->whatsapp("$seo->desc")
+                ->telegram("$seo->desc")
+                ->getRawLinks();
 
-        return view('service_item', compact('seo','service','suggests','banner'));
+        return view('service_item', compact('seo','service','suggests','banner','shareLinks'));
     }
 
     public function category(Request $request, $slug) {
