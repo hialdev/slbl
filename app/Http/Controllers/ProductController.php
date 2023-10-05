@@ -65,12 +65,12 @@ class ProductController extends Controller
 
         $page = Page::where('slug','product-show')->firstOrFail();
         $banner = $page->banner;
-        $shareLinks = ShareFacade::page($request->url(), "$seo->desc")
-                ->facebook("$seo->desc")
-                ->twitter("$seo->desc")
-                ->linkedin("$seo->desc")
-                ->whatsapp("$seo->desc")
-                ->telegram("$seo->desc")
+        $shareLinks = ShareFacade::page($request->url(), "Lihat $product->title")
+                ->facebook()
+                ->twitter()
+                ->linkedin()
+                ->whatsapp()
+                ->telegram()
                 ->getRawLinks();
 
         return view('product_item', compact('seo','product','suggests','banner','shareLinks'));

@@ -75,12 +75,12 @@ class NewsController extends Controller
             }
         }
 
-        $shareLinks = ShareFacade::page($request->url(), "$seo->desc")
-                ->facebook("$seo->desc")
-                ->twitter("$seo->desc")
-                ->linkedin("$seo->desc")
-                ->whatsapp("$seo->desc")
-                ->telegram("$seo->desc")
+        $shareLinks = ShareFacade::page($request->url(), "Lihat $news->title")
+                ->facebook()
+                ->twitter()
+                ->linkedin()
+                ->whatsapp()
+                ->telegram()
                 ->getRawLinks();
 
         return view('news_item', compact('seo','news','suggests','shareLinks'));

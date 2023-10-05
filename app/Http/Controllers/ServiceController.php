@@ -65,12 +65,12 @@ class ServiceController extends Controller
 
         $page = Page::where('slug','service-show')->firstOrFail();
         $banner = $page->banner;
-        $shareLinks = ShareFacade::page($request->url(), "$seo->desc")
-                ->facebook("$seo->desc")
-                ->twitter("$seo->desc")
-                ->linkedin("$seo->desc")
-                ->whatsapp("$seo->desc")
-                ->telegram("$seo->desc")
+        $shareLinks = ShareFacade::page($request->url(), "Lihat $service->title")
+                ->facebook()
+                ->twitter()
+                ->linkedin()
+                ->whatsapp()
+                ->telegram()
                 ->getRawLinks();
 
         return view('service_item', compact('seo','service','suggests','banner','shareLinks'));

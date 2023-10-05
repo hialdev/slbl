@@ -65,12 +65,12 @@ class SparepartController extends Controller
 
         $page = Page::where('slug','sparepart-show')->firstOrFail();
         $banner = $page->banner;
-        $shareLinks = ShareFacade::page($request->url(), "$seo->desc")
-                ->facebook("$seo->desc")
-                ->twitter("$seo->desc")
-                ->linkedin("$seo->desc")
-                ->whatsapp("$seo->desc")
-                ->telegram("$seo->desc")
+        $shareLinks = ShareFacade::page($request->url(), "Lihat $sparepart->title")
+                ->facebook()
+                ->twitter()
+                ->linkedin()
+                ->whatsapp()
+                ->telegram()
                 ->getRawLinks();
 
         return view('sparepart_item', compact('seo','sparepart','suggests','banner','shareLinks'));
